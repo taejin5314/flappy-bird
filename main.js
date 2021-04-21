@@ -17,8 +17,10 @@ function animate() {
   // ctx.fillRect(10, temp, 50, 50);
   bird.update();
   bird.draw();
+  handleParicles();
   requestAnimationFrame(animate);
   angle += 0.12;
+  hue++;
 }
 
 animate();
