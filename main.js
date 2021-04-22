@@ -18,9 +18,28 @@ gradient.addColorStop('0.6', '#000');
 gradient.addColorStop('0.9', '#fff');
 let temp = canvas.height - 90;
 
+const background = new Image();
+background.src = 'BG.png';
+const BG = {
+  x1: 0,
+  x2: canvas.width,
+  y: 0,
+  width: canvas.width,
+  height: canvas.height,
+}
+function handleBackground() {
+  if (BG.x1 <= -BG.width + gamespeed) BG.x1 = BG.width;
+  else BG.x1 -= gamespeed;
+  if (BG.x2 <= -BG.width + gamespeed) BG.x2 = BG.width;
+  else BG.x2 -= gamespeed;
+  ctx.drawImage(background, BG.x1, BG.y, BG.width, BG.height);
+  ctx.drawImage(background, BG.x2, BG.y, BG.width, BG.height);
+}
+
 function animate() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   // ctx.fillRect(10, temp, 50, 50);
+  handleBackground();
   handleParicles();
   handleObstacles();
   bird.update();
@@ -61,3 +80,4 @@ function handleCollisions() {
     }
   }
 }
+
